@@ -5,6 +5,9 @@ name = "pypi"
 
 [packages]
 flask-restful = "*"
+flask-restful-swagger-3 = "*"
+pytest = "*"
+coverage = "*"
 
 [dev-packages]
 

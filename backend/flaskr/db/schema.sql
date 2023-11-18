@@ -34,22 +34,26 @@ CREATE TABLE group_moderators (
 );
 
 CREATE TABLE collect_sessions (
-    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE,
     name TEXT NOT NULL,
     description TEXT NOT NULL,
     date_created TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
     due_date TEXT NOT NULL,
-    creator TEXT NOT NULL,
-    group_id INTEGER NOT NULL,
-    FOREIGN KEY (creator) REFERENCES users (username),
-    FOREIGN KEY (group_id) REFERENCES groups (id)
+    group_name TEXT NOT NULL,
+    group_creator TEXT NOT NULL,
+    FOREIGN KEY (group_creator) REFERENCES users (username),
+    FOREIGN KEY (group_name, group_creator) REFERENCES groups (name, creator),
+    PRIMARY KEY (name, group_name, group_creator)
 );
 
 CREATE TABLE collect_session_entries (
-    session_id INTEGER NOT NULL,
+    group_name TEXT NOT NULL,
+    group_creator TEXT NOT NULL,
+    session_name TEXT NOT NULL,
     member TEXT NOT NULL,
     paid BOOLEAN NOT NULL DEFAULT FALSE,
-    FOREIGN KEY (session_id) REFERENCES collect_sessions (id),
-    PRIMARY KEY (session_id, member)
+    date_paid TEXT,
+    FOREIGN KEY (group_name, group_creator) REFERENCES groups (name, creator),
+    FOREIGN KEY (group_name, group_creator, session_name) REFERENCES collect_sessions (group_name, group_creator, name),
+    PRIMARY KEY (group_name, group_creator, session_name, member)
 );
 

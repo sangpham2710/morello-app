@@ -1,4 +1,4 @@
-from . import get_db
+from .. import get_db
 
 class GroupRepo:
     def get_all(self):

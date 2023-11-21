@@ -1,4 +1,4 @@
-from . import get_db
+from .. import get_db
 
 TABLE_NAME = 'collect_session_entries'
 

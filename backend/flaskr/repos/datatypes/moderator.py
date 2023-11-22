@@ -6,4 +6,4 @@ class Moderator:
     group_leader: str
     group_name: str
     moderator_username: str
-    data_joined: str
+    date_joined: str

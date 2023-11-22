@@ -3,6 +3,8 @@ from typing import Dict, List
 
 from click import Group
 
+from flaskr.repos.datatypes.member import Member
+
 from ..datatypes.collect_session_entry import CollectSessionEntry
 from ..datatypes.collect_session import CollectSession
 from ..datatypes.user import User
@@ -14,25 +16,25 @@ class AbstractCollectSessionRepo(ABC):
         pass
 
     @abstractmethod
-    def get_all(self) -> List[CollectSession]:
+    def get_all(self, max: int) -> List[CollectSession]:
         pass
 
     @abstractmethod
-    def add(self, collect_session: CollectSession) -> CollectSession:
+    def add(self, collect_session: CollectSession):
         pass
 
     @abstractmethod
-    def update(self, collect_session: CollectSession) -> CollectSession:
+    def update(self, collect_session: CollectSession):
         pass
 
     @abstractmethod
-    def delete(self, name: str, group_name: str, leader: str) -> bool:
+    def delete(self, name: str, group_name: str, leader: str):
         pass
 
     @abstractmethod
     def get_members(
         self, collect_session_name: str, collect_session_leader: str
-    ) -> Dict[CollectSession, List[User]]:
+    ) -> Dict[CollectSession, List[Member]]:
         pass
 
     @abstractmethod
@@ -46,13 +48,9 @@ class AbstractCollectSessionRepo(ABC):
         pass
 
     @abstractmethod
-    def add_entry(
-        self, name: str, group_name: str, leader: str, entry: CollectSessionEntry
-    ) -> bool:
+    def add_entry(self, entry: CollectSessionEntry):
         pass
 
     @abstractmethod
-    def remove_entry(
-        self, name: str, group_name: str, leader: str, entry: CollectSessionEntry
-    ) -> bool:
+    def remove_entry(self, entry: CollectSessionEntry):
         pass

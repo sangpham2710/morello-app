@@ -9,3 +9,4 @@ class User:
     first_name: str
     last_name: str
     date_created: str
+

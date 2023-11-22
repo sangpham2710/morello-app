@@ -10,11 +10,11 @@ class AbstractUserRepo(ABC):
         pass
 
     @abstractmethod
-    def get_users(self) -> List[User]:
+    def get_users(self, max: int) -> List[User]:
         pass
 
     @abstractmethod
-    def add(self, user: User) -> User:
+    def add(self, user: User):
         pass
 
     @abstractmethod

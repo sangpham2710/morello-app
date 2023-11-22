@@ -1,4 +1,13 @@
 import sqlite3
+
+from flaskr.repos.sqlite3_repos import (
+    COLLECT_SESSION_ENTRY_TYPE_NAME,
+    COLLECT_SESSION_TYPE_NAME,
+    GROUP_TYPE_NAME,
+    MEMBER_TYPE_NAME,
+    MODERATOR_TYPE_NAME,
+    USER_TYPE_NAME,
+)
 from ..datatypes.user import User
 from ..datatypes.moderator import Moderator
 from ..datatypes.member import Member
@@ -98,15 +107,18 @@ def convert_collect_session(collect_session_str) -> CollectSession:
     data = collect_session_str.split(";")
     return CollectSession(*data)
 
+
 sqlite3.register_adapter(User, adapt_user)
-sqlite3.register_converter("user", convert_user)
+sqlite3.register_converter(USER_TYPE_NAME, convert_user)
 sqlite3.register_adapter(Moderator, adapt_moderator)
-sqlite3.register_converter("moderator", convert_moderator)
+sqlite3.register_converter(MODERATOR_TYPE_NAME, convert_moderator)
 sqlite3.register_adapter(Member, adapt_member)
-sqlite3.register_converter("member", convert_member)
+sqlite3.register_converter(MEMBER_TYPE_NAME, convert_member)
 sqlite3.register_adapter(Group, adapt_group)
-sqlite3.register_converter("group", convert_group)
+sqlite3.register_converter(GROUP_TYPE_NAME, convert_group)
 sqlite3.register_adapter(CollectSessionEntry, adapt_collect_session_entry)
-sqlite3.register_converter("collect_session_entry", convert_collect_session_entry)
+sqlite3.register_converter(
+    COLLECT_SESSION_ENTRY_TYPE_NAME, convert_collect_session_entry
+)
 sqlite3.register_adapter(CollectSession, adapt_collect_session)
-sqlite3.register_converter("collect_session", convert_collect_session)
+sqlite3.register_converter(COLLECT_SESSION_TYPE_NAME, convert_collect_session)

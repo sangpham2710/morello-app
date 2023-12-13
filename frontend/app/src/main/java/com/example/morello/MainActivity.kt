@@ -16,6 +16,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.morello.ui.home.HomeScreen
 import com.example.morello.ui.register.RegisterScreen
 import com.example.morello.ui.register.RegisterUiState
 import com.example.morello.ui.theme.MorelloTheme
@@ -52,23 +53,24 @@ class MainActivity : ComponentActivity() {
 //                        },
 //                        onNameChanged = { registerUiState = registerUiState.copy(name = it) },
 //                        onBack = { /*TODO*/ })
-                    LoginScreen(
-                        uiState = loginUiState,
-                        onEmailChanged = { loginUiState = loginUiState.copy(email = it) },
-                        onPasswordChanged = {
-                            loginUiState = loginUiState.copy(password = it)
-                        },
-                        onLoginButtonClicked = { /*TODO*/ },
-                        onBack = { /*TODO*/ },
-                        onForgotPasswordClicked = { /*TODO*/ },
-                        onRegisterClicked = { /*TODO*/ },
-                        onRememberMeChanged = { loginUiState = loginUiState.copy(rememberMe = it) },
-                        onShowPasswordChanged = {
-                            loginUiState = loginUiState.copy(showPassword = it)
-                        },
-                        onGoogleLoginClicked = { /*TODO*/ },
-                        modifier = Modifier.padding(10.dp),
-                    )
+//                    LoginScreen(
+//                        uiState = loginUiState,
+//                        onEmailChanged = { loginUiState = loginUiState.copy(email = it) },
+//                        onPasswordChanged = {
+//                            loginUiState = loginUiState.copy(password = it)
+//                        },
+//                        onLoginButtonClicked = { /*TODO*/ },
+//                        onBack = { /*TODO*/ },
+//                        onForgotPasswordClicked = { /*TODO*/ },
+//                        onRegisterClicked = { /*TODO*/ },
+//                        onRememberMeChanged = { loginUiState = loginUiState.copy(rememberMe = it) },
+//                        onShowPasswordChanged = {
+//                            loginUiState = loginUiState.copy(showPassword = it)
+//                        },
+//                        onGoogleLoginClicked = { /*TODO*/ },
+//                        modifier = Modifier.padding(10.dp),
+//                    )
+                    HomeScreen(userName = null, subscribedGroup = listOf())
                 }
             }
         }

@@ -6,8 +6,7 @@ from .views import (
     MemberViewSet,
     BalanceViewSet,
     CollectSessionViewSet,
-    BalanceEntryViewSet,
-    # CollectEntryViewSet
+    BalanceEntryViewSet
 )
 
 router = routers.SimpleRouter()
@@ -24,6 +23,10 @@ groups_router.register(
     r'sessions',
     CollectSessionViewSet,
     basename='group-sessions')
+groups_router.register(
+    r'sessions/(?P<session_pk>\d+)/status',
+    CollectSessionViewSet,
+    basename='group-session-set-status')
 groups_router.register(
     r'moderators',
     ModeratorViewSet,

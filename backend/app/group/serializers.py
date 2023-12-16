@@ -44,9 +44,21 @@ class MemberSerializer(serializers.ModelSerializer):
 
 
 class CollectSessionSerializer(serializers.ModelSerializer):
+    member_statuses = serializers.SerializerMethodField()
+
     class Meta:
         model = CollectSession
-        fields = ['id', 'start', 'due', 'description', 'is_open']
+        fields = [
+            'id',
+            'start',
+            'due',
+            'description',
+            'is_open',
+            'member_statuses']
+
+    def get_member_statuses(self, obj):
+        collect_entries = CollectEntry.objects.filter(session=obj)
+        return CollectEntrySerializer(collect_entries, many=True).data
 
 
 class BalanceEntrySerializer(serializers.ModelSerializer):

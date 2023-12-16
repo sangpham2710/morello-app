@@ -20,6 +20,7 @@ from django.db.models import (
 )
 
 from .mixins import GroupPermissionMixin
+from rest_framework.decorators import action
 
 # Create your views here.
 
@@ -42,7 +43,7 @@ class MemberViewSet(GroupPermissionMixin, viewsets.ModelViewSet):
         return Member.objects.filter(group_id=group_id)
 
 
-class BalanceViewSet(viewsets.ViewSet):
+class BalanceViewSet(GroupPermissionMixin, viewsets.ViewSet):
     def list(self, request, group_pk=None):
         book_balance = BalanceEntry.objects.filter(
             group_id=group_pk).aggregate(
@@ -58,7 +59,7 @@ class BalanceViewSet(viewsets.ViewSet):
         })
 
 
-class BalanceEntryViewSet(viewsets.ModelViewSet):
+class BalanceEntryViewSet(GroupPermissionMixin, viewsets.ModelViewSet):
     serializer_class = BalanceEntrySerializer
 
     def get_queryset(self):
@@ -74,8 +75,26 @@ class CollectSessionViewSet(viewsets.ModelViewSet):
         return CollectSession.objects.filter(
             balance_entries__group_id=group_id)
 
+    @action(detail=True, methods=['patch'])
+    def status(self, request, group_pk=None, session_pk=None):
+        session = self.get_object()
+        member_status_data = request.data
+        if member_status_data is None:
+            return Response({'error': 'Invalid input'}, status=400)
 
-class ModeratorViewSet(viewsets.ModelViewSet):
+        for data in member_status_data:
+            member_id = data.get('member_id')
+            status = data.get('status')
+            if member_id is not None and status is not None:
+                collect_entry = session.collect_entries.filter(
+                    member_id=member_id).first()
+                if collect_entry:
+                    collect_entry.status = status
+                    collect_entry.save()
+        return Response({'status': 'status set for members'})
+
+
+class ModeratorViewSet(GroupPermissionMixin, viewsets.ModelViewSet):
     serializer_class = ModeratorSerializer
 
     def get_queryset(self):

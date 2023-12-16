@@ -14,7 +14,7 @@ class GroupPermissionMixin:
         ).distinct().select_related('leader_user_id')
 
     def get_permissions(self):
-        if self.request.method in ['PUT', 'PATCH', 'DELETE']:
+        if self.request.method in ['POST', 'PUT', 'PATCH', 'DELETE']:
             self.permission_classes = [IsAuthenticated, IsGroupAdmin]
         else:
             self.permission_classes = [

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "500907326434",
+    "project_id": "notificationtest-8d0ff",
+    "storage_bucket": "notificationtest-8d0ff.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:500907326434:android:238b94c61d54cd8fcf17bb",
+        "android_client_info": {
+          "package_name": "com.example.morello"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlCuNpIcXIgMlGAXGFUto-SXllWRwcI8A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

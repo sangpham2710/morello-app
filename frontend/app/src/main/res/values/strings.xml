@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Morello</string>
+    <string name="msg_token_fmt">Token: %s</string>
 </resources>

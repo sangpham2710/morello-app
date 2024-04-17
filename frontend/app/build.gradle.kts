@@ -1,6 +1,7 @@
 plugins {
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
+    id("com.google.gms.google-services")
 
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
@@ -53,7 +54,9 @@ android {
 }
 
 dependencies {
+    implementation(platform("com.google.firebase:firebase-bom:32.8.1"))
     implementation("com.google.dagger:hilt-android:2.50")
+    implementation(libs.firebase.messaging.ktx)
     kapt("com.google.dagger:hilt-android-compiler:2.50")
     implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.16.+")

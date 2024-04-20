@@ -36,6 +36,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
+            // For testing FCM
             LaunchedEffect(Unit) {
                 launch {
                     val token = Firebase.messaging.token.await()

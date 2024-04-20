@@ -54,6 +54,7 @@ android {
 }
 
 dependencies {
+    implementation("com.google.accompanist:accompanist-permissions:0.30.1")
     implementation(platform("com.google.firebase:firebase-bom:32.8.1"))
     implementation("com.google.dagger:hilt-android:2.50")
     implementation(libs.firebase.messaging.ktx)
